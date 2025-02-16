@@ -1,5 +1,6 @@
 using ManagementSystem.Application;
 using ManagementSystem.DAL.SqlServer;
+using ManagementSystemProject.Infractructure.Midldewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -26,5 +27,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseMiddleware<ExceptionHandlerMiddleware>();
 
 app.Run();

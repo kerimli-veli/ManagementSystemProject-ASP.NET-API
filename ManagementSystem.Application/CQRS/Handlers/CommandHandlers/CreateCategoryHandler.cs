@@ -1,5 +1,6 @@
 ﻿using ManagementSystem.Application.CQRS.Commands.Requests;
 using ManagementSystem.Application.CQRS.Commands.Responses;
+using ManagementSystem.Common.Exceptions;
 using ManagementSystem.Common.GlobalResponses.Generics;
 using ManagementSystem.Domain.Entities;
 using ManagementSystem.Repository.Common;
@@ -19,12 +20,14 @@ public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Cre
 
         if(string.IsNullOrEmpty(request.Name))
         {
-            return new Result<CreateCategoryResponse>
-            {
-                Data = null,
-                Errors = ["Category Name cannot be empty"],
-                IsSuccess = false
-            };
+            //return new Result<CreateCategoryResponse>
+            //{
+            //    Data = null,
+            //    Errors = ["Category Name cannot be empty"],
+            //    IsSuccess = false
+            //};s
+
+            throw new BadRequestException("Name cannot be null");
 
         }
 

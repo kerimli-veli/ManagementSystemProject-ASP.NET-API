@@ -60,7 +60,7 @@ public class SqlCategoryRepository : BaseSqlRepository, ICategoryRepository
                    FROM Categories AS C 
                     WHERE C.Id = @id AND C.IsDeleted=0";
         using var conn = OpenConnection();
-        return await conn.QueryFirstOrDefaultAsync<Category>(sql , id);
+        return await conn.QueryFirstOrDefaultAsync<Category>(sql , new { id });
 
 
     }

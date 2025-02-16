@@ -17,5 +17,13 @@ namespace ManagementSystemProject.Controllers
         {
             return Ok(await _sender.Send(request));
         }
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> Create([FromBody]           )
+        {
+
+            return Ok(await _sender)
+        }
     }
 }

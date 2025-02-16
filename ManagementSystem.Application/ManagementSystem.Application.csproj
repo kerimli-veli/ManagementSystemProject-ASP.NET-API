@@ -16,8 +16,6 @@
     <Folder Include="AutoMapper\" />
     <Folder Include="AutoMapper\" />
     <Folder Include="CQRS\Handlers\QueryHandlers\" />
-    <Folder Include="CQRS\Queries\Responses\" />
-    <Folder Include="CQRS\Queries\Requests\" />
   </ItemGroup>
 
   <ItemGroup>
