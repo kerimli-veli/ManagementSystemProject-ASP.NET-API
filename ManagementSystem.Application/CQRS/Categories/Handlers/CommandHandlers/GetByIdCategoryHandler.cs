@@ -1,12 +1,12 @@
-﻿using ManagementSystem.Application.CQRS.Queries.Requests;
-using ManagementSystem.Application.CQRS.Queries.Responses;
+﻿using ManagementSystem.Application.CQRS.Categories.Queries.Requests;
+using ManagementSystem.Application.CQRS.Categories.Queries.Responses;
 using ManagementSystem.Common.Exceptions;
 using ManagementSystem.Common.GlobalResponses.Generics;
 using ManagementSystem.Domain.Entities;
 using ManagementSystem.Repository.Common;
 using MediatR;
 
-namespace ManagementSystem.Application.CQRS.Handlers.CommandHandlers;
+namespace ManagementSystem.Application.CQRS.Categories.Handlers.CommandHandlers;
 
 public sealed class GetByIdCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetByIdCategoryRequest, Result<GetByIdCategoryResponse>>
 {

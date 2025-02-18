@@ -1,4 +1,4 @@
-﻿namespace ManagementSystem.Application.CQRS.Commands.Responses;
+﻿namespace ManagementSystem.Application.CQRS.Categories.Commands.Responses;
 
 public class CreateCategoryResponse
 {

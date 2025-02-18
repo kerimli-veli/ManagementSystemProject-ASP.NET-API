@@ -1,16 +1,17 @@
-﻿using ManagementSystem.Application.CQRS.Commands.Requests;
-using ManagementSystem.Application.CQRS.Commands.Responses;
+﻿using ManagementSystem.Application.CQRS.Categories.Commands.Requests;
+using ManagementSystem.Application.CQRS.Categories.Commands.Responses;
 using ManagementSystem.Common.Exceptions;
 using ManagementSystem.Common.GlobalResponses.Generics;
 using ManagementSystem.Domain.Entities;
 using ManagementSystem.Repository.Common;
 using MediatR;
 
-namespace ManagementSystem.Application.CQRS.Handlers.CommandHandlers;
+namespace ManagementSystem.Application.CQRS.Categories.Handlers.CommandHandlers;
 
 public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<CreateCategoryRequest, Result<CreateCategoryResponse>>
 {
-    private readonly IUnitOfWork _unitwork = unitOfWork;
+    private readonly IUnitOfWork _unitOfWork = unitOfWork;
+
     public async Task<Result<CreateCategoryResponse>> Handle(CreateCategoryRequest request, CancellationToken cancellationToken)
     {
         Category category = new()
@@ -18,33 +19,28 @@ public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Cre
             Name = request.Name
         };
 
-        if(string.IsNullOrEmpty(request.Name))
+        if (string.IsNullOrWhiteSpace(request.Name))
         {
             //return new Result<CreateCategoryResponse>
             //{
             //    Data = null,
-            //    Errors = ["Category Name cannot be empty"],
+            //    Errors = ["Categry Name bosh olmamalidir"],
             //    IsSuccess = false
-            //};s
+            //};
 
-            throw new BadRequestException("Name cannot be null");
-
+            throw new BadRequestException("Name null ola bilmez");
         }
 
-       await _unitwork.CategoryRepository.AddAsync(category);
+        await _unitOfWork.CategoryRepository.AddAsync(category);
 
         CreateCategoryResponse response = new()
         {
             Id = category.Id,
-            Name = category.Name,
+            Name = request.Name
         };
 
-        return new Result<CreateCategoryResponse>
-        {
-            Data = response,
-            Errors = [],
-            IsSuccess = true
-        };
+        return new Result<CreateCategoryResponse> { Data = response, Errors = [], IsSuccess = true };
+
     }
 }
 

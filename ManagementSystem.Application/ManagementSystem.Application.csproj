@@ -7,15 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="CQRS\Categories\**" />
-    <EmbeddedResource Remove="CQRS\Categories\**" />
-    <None Remove="CQRS\Categories\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="AutoMapper\" />
     <Folder Include="AutoMapper\" />
-    <Folder Include="CQRS\Handlers\QueryHandlers\" />
+    <Folder Include="CQRS\Categories\Handlers\QueryHandlers\" />
   </ItemGroup>
 
   <ItemGroup>

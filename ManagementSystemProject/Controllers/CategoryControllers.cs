@@ -1,29 +1,26 @@
-﻿using ManagementSystem.Application.CQRS.Commands.Requests;
+﻿using ManagementSystem.Application.CQRS.Categories.Commands.Requests;
+using ManagementSystem.Application.CQRS.Categories.Queries.Requests;
 using MediatR;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ManagementSystemProject.Controllers
+namespace ManagementSystemProject.Controllers;
+
+[Route("api/[controller]")]
+[ApiController]
+public class CategoryController(ISender sender) : ControllerBase
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class CategoryControllers(ISender sender) : ControllerBase
+    private readonly ISender _sender = sender;
+    
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] CreateCategoryRequest request)
     {
-        private readonly ISender _sender = sender;
+        return Ok(await _sender.Send(request));
+    }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCategoryRequest request)
-        {
-            return Ok(await _sender.Send(request));
-        }
-
-        [HttpGet("{id}")]
-
-        public async Task<IActionResult> Create([FromBody]           )
-        {
-
-            return Ok(await _sender)
-        }
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetByIdAsync(int id)
+    {
+        var request = new GetByIdCategoryRequest() { Id = id };
+        return Ok(await _sender.Send(request));
     }
 }

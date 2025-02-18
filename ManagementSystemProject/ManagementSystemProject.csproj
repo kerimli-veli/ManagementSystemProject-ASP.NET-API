@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ManagementSystem.Application\ManagementSystem.Application.csproj" />
+    <ProjectReference Include="..\ManagementSystem.Common\ManagementSystem.Common.csproj" />
     <ProjectReference Include="..\ManagementSystem.DAL.SqlServer\ManagementSystem.DAL.SqlServer.csproj" />
   </ItemGroup>
 

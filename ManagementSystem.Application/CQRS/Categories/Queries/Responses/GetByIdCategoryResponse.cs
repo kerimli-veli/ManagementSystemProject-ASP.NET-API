@@ -1,4 +1,4 @@
-﻿namespace ManagementSystem.Application.CQRS.Queries.Responses;
+﻿namespace ManagementSystem.Application.CQRS.Categories.Queries.Responses;
 
 public record struct GetByIdCategoryResponse
 {
