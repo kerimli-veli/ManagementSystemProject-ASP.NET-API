@@ -10,7 +10,7 @@ public static class DependencyInjections
 {
     public static IServiceCollection AddSqlServerServices(this IServiceCollection services, string connectionString)
     {
-        services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connectionString));
+       services.AddDbContext<AppDbContext>(opt => opt.UseSqlServer(connectionString));
 
        services.AddScoped<IUnitOfWork, SqlUnitOfWork>(opt =>
         {

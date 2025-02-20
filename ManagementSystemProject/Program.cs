@@ -9,7 +9,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
-var conn = builder.Configuration.GetConnectionString("Myconn");
+var conn = builder.Configuration.GetConnectionString("MyConn");
+
 builder.Services.AddSqlServerServices(conn);
 
 builder.Services.AddApplicationServices();

@@ -1,7 +1,6 @@
 ﻿using ManagementSystem.Common.Exceptions;
 using ManagementSystem.Common.GlobalResponses;
 using System.Net;
-using System.Runtime.InteropServices;
 using System.Text.Json;
 
 namespace ManagementSystemProject.Infractructure.Midldewares;
