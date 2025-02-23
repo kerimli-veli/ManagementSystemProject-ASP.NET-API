@@ -28,9 +28,17 @@ public class UserController(ISender sender) : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> ResultAsync([FromBody] Register.Command request )
+    public async Task<IActionResult> ResultAsync([FromBody] Register.Command request)
     {
         return Ok(await _sender.Send(request));
     }
+
+    [HttpPut]
+    [Route("Update")]
+    public async Task<IActionResult> Update([FromQuery] Update.Command request)
+    {
+        return Ok(await _sender.Send(request));
+    }
+
 
 }

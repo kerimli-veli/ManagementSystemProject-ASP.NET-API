@@ -9,6 +9,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 
+
 var conn = builder.Configuration.GetConnectionString("MyConn");
 
 builder.Services.AddSqlServerServices(conn);
@@ -23,11 +24,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapControllers();
+app.UseSwagger();
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
 

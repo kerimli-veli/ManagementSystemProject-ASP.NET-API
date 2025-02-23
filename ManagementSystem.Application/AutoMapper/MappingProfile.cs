@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using ManagementSystem.Application.CQRS.Users.Responses;
+using ManagementSystem.Application.CQRS.Users.ResponsesDtos;
 using ManagementSystem.Domain.Entities;
 using System.ComponentModel.Design;
 using System.Security.Cryptography.X509Certificates;
@@ -13,6 +14,7 @@ public class MappingProfile : Profile
     {
         CreateMap<Command, User>();
         CreateMap<User, RegisterDto>();
+        CreateMap<User, UpdateDto>();
 
     }
 }

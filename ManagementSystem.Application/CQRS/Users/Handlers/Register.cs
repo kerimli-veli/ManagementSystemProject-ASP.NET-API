@@ -30,17 +30,9 @@ public class Register
         public async Task<Result<RegisterDto>> Handle(Command request, CancellationToken cancellationToken)
         {
             var currentUser = await _unitOfWork.UserRepository.GetByEmailAsync(request.Email);
-            if (currentUser != null)
-                throw new BadRequestException("User is already exist with provided mail");
+            if (currentUser != null) throw new BadRequestException("User is already exist with provided mail");
 
-            //var user = new User
-            //{
-            //    Name = request.Name,
-            //    Surname = request.Surname,
-            //    Email = request.Email,
-            //    Phone = request.Phone,
-            //};
-
+      
             var user = _mapper.Map<User>(request);
 
             var hashPassword = PasswordHasher.ComputeStringToSha256Hash(request.Password);
@@ -48,14 +40,7 @@ public class Register
             user.CreatedBy = 1;    
             await _unitOfWork.UserRepository.RegisterAsync(user);
 
-            //RegisterDto response = new()
-            //{
-            //    Id = user.Id,
-            //    Name = user.Name,
-            //    Email = user.Email,
-            //    Phone = user.Phone,
-            //    Surname = user.Surname,
-            //};
+   
 
             var response = _mapper.Map<RegisterDto>(user);
 
