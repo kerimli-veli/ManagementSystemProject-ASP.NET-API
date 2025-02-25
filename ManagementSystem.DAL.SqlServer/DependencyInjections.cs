@@ -1,4 +1,5 @@
-﻿using ManagementSystem.DAL.SqlServer.Context;
+﻿using ManagementSystem.Application.BackgroundServices;
+using ManagementSystem.DAL.SqlServer.Context;
 using ManagementSystem.DAL.SqlServer.UnitOfWork.SqlUnitOfWork;
 using ManagementSystem.Repository.Common;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,7 @@ public static class DependencyInjections
             var dbContext = opt.GetRequiredService<AppDbContext>();
             return new SqlUnitOfWork(connectionString,dbContext);
         });
+        services.AddHostedService<DeleteUserBackgroundService>();
 
         return services;
     }

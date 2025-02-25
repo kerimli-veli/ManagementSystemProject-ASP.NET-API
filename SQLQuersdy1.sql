@@ -1,4 +1,6 @@
-﻿CREATE TABLE Users (
+﻿
+
+CREATE TABLE Users (
     [Id]          INT            IDENTITY (1, 1) NOT NULL,
     [Name]        NVARCHAR (255) NOT NULL,
     [Email]       NVARCHAR(70)   NOT NULL,

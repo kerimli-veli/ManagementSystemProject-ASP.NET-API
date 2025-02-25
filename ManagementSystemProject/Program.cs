@@ -7,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
 
 
@@ -33,5 +34,6 @@ app.MapControllers();
 app.UseSwagger();
 
 app.UseMiddleware<ExceptionHandlerMiddleware>();
+app.UseMiddleware<RateLimitMiddleware>(2, TimeSpan.FromMinutes(1));
 
 app.Run();

@@ -21,7 +21,7 @@ public sealed class GetByIdCategoryHandler(IUnitOfWork unitOfWork) : IRequestHan
         {
             Id = category.Id,
             Name = category.Name,
-            CreatedDate = category.CreatedDate
+            CreatedDate = category.CreatedDate ?? DateTime.UtcNow
         };
 
         return new Result<GetByIdCategoryResponse> { Data = response, Errors = [], IsSuccess = true };
