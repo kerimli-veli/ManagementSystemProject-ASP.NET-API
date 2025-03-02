@@ -21,6 +21,7 @@ public static class DependencyInjections
         services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationPipelineBehaviour<,>));
     
         services.AddMediatR(Assembly.GetExecutingAssembly());
+
         
 
         return services;

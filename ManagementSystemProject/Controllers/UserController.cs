@@ -1,5 +1,6 @@
 ﻿using ManagementSystem.Application.CQRS.Users.Handlers;
 using MediatR;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using static ManagementSystem.Application.CQRS.Users.Handlers.GetByEmail;
 
@@ -28,14 +29,20 @@ public class UserController(ISender sender) : ControllerBase
 
 
     [HttpPost]
-    public async Task<IActionResult> ResultAsync([FromBody] Register.Command request)
+    public async Task<IActionResult> ResultAsync([FromBody] ManagementSystem.Application.CQRS.Users.Handlers.Register.Command request)
     {
         return Ok(await _sender.Send(request));
     }
 
     [HttpPut]
     [Route("Update")]
-    public async Task<IActionResult> Update([FromQuery] Update.Command request)
+    public async Task<IActionResult> Update([FromQuery] ManagementSystem.Application.CQRS.Users.Handlers.Update.Command request)
+    {
+        return Ok(await _sender.Send(request));
+    }
+
+    [HttpPost("Login")]
+    public async Task<IActionResult> Login([FromBody] ManagementSystem.Application.CQRS.Users.Handlers.Login.LoginRequest request )
     {
         return Ok(await _sender.Send(request));
     }

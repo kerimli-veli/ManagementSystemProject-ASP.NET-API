@@ -3,7 +3,7 @@ using ManagementSystem.Repository.Common;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
-namespace ManagementSystem.Application.BackgroundServices;
+namespace ManagementSystem.Application.Service.BackgroundServices;
 
 public class DeleteUserBackgroundService(IServiceScopeFactory scopeFactory) : BackgroundService
 {
@@ -17,10 +17,10 @@ public class DeleteUserBackgroundService(IServiceScopeFactory scopeFactory) : Ba
             {
                 using var scope = _scopeFactory.CreateScope();
                 var _unitOfWork = scope.ServiceProvider.GetRequiredService<IUnitOfWork>();
-                var userToDelete = _unitOfWork.UserRepository.GetAll().Where(u => u.CreatedDate == null && !u.IsDeleted ).ToList();
-                if (userToDelete.Count !=0)
+                var userToDelete = _unitOfWork.UserRepository.GetAll().Where(u => u.CreatedDate == null && !u.IsDeleted).ToList();
+                if (userToDelete.Count != 0)
                 {
-                    foreach(var user in userToDelete)
+                    foreach (var user in userToDelete)
                     {
                         user.IsDeleted = true;
                         user.DeletedDate = DateTime.Now;
@@ -36,7 +36,7 @@ public class DeleteUserBackgroundService(IServiceScopeFactory scopeFactory) : Ba
             }
 
 
-            await Task.Delay(TimeSpan.FromMinutes(1) , stoppingToken);
+            await Task.Delay(TimeSpan.FromMinutes(1), stoppingToken);
         }
     }
 }

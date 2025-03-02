@@ -1,4 +1,4 @@
-﻿using ManagementSystem.Application.BackgroundServices;
+﻿using ManagementSystem.Application.Service.BackgroundServices;
 using ManagementSystem.DAL.SqlServer.Context;
 using ManagementSystem.DAL.SqlServer.UnitOfWork.SqlUnitOfWork;
 using ManagementSystem.Repository.Common;

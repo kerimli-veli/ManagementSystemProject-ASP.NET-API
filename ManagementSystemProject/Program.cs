@@ -1,6 +1,7 @@
 using ManagementSystem.Application;
 using ManagementSystem.DAL.SqlServer;
 using ManagementSystemProject.Infractructure.Midldewares;
+using ManagementSystemProject.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,6 +17,7 @@ var conn = builder.Configuration.GetConnectionString("MyConn");
 builder.Services.AddSqlServerServices(conn);
 
 builder.Services.AddApplicationServices();
+builder.Services.AddAuthenticationService(builder.Configuration);
 
 var app = builder.Build();
 
