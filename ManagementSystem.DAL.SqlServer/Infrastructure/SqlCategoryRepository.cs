@@ -5,13 +5,9 @@ using ManagementSystem.Repository.Repositories;
 
 namespace ManagementSystem.DAL.SqlServer.Infrastructure;
 
-public class SqlCategoryRepository : BaseSqlRepository, ICategoryRepository
+public class SqlCategoryRepository(string connectionString, AppDbContext context) : BaseSqlRepository(connectionString), ICategoryRepository
 {
-    private readonly AppDbContext _context;
-    public SqlCategoryRepository(string connectionString, AppDbContext context) : base(connectionString)
-    {
-        _context = context;
-    }
+    private readonly AppDbContext _context = context;
 
     public async Task AddAsync(Category category)
     {
