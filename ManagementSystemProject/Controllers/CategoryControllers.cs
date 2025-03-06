@@ -1,12 +1,14 @@
 ﻿using ManagementSystem.Application.CQRS.Categories.Commands.Requests;
 using ManagementSystem.Application.CQRS.Categories.Queries.Requests;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ManagementSystemProject.Controllers;
 
 [Route("api/[controller]")]
 [ApiController]
+[Authorize]
 public class CategoryController(ISender sender) : ControllerBase
 {
     private readonly ISender _sender = sender;

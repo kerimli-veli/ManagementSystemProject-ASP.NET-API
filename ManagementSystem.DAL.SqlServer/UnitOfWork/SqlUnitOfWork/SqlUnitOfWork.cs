@@ -14,6 +14,7 @@ public class SqlUnitOfWork(string connectionString, AppDbContext context) : IUni
     public SqlCategoryRepository _categoryRepository;
     public SqlUserRepository _userRepository;
     public SqlProductRepository _productRepository;
+    public SqlRefreshTokenRepository _refreshTokenRepository;
 
 
     public ICategoryRepository CategoryRepository => _categoryRepository ?? new SqlCategoryRepository(_connectionString , _context);
@@ -21,6 +22,9 @@ public class SqlUnitOfWork(string connectionString, AppDbContext context) : IUni
     public IUserRepository UserRepository => _userRepository ?? new SqlUserRepository(_context);
 
     public IProductRepository ProductRepository => _productRepository ?? new SqlProductRepository(_connectionString, _context);
+
+    public IRefreshTokenRepository RefreshTokenRepository => _refreshTokenRepository ?? new SqlRefreshTokenRepository( _context);
+
 
 
     public async Task<int> SaveChangesAsync()
