@@ -1,5 +1,6 @@
 ﻿using ManagementSystem.Application.CQRS.Categories.Commands.Requests;
 using ManagementSystem.Application.CQRS.Categories.Commands.Responses;
+using ManagementSystem.Application.Security;
 using ManagementSystem.Common.Exceptions;
 using ManagementSystem.Common.GlobalResponses.Generics;
 using ManagementSystem.Domain.Entities;
@@ -8,7 +9,7 @@ using MediatR;
 
 namespace ManagementSystem.Application.CQRS.Categories.Handlers.CommandHandlers;
 
-public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<CreateCategoryRequest, Result<CreateCategoryResponse>>
+public class CreateCategoryHandler(IUnitOfWork unitOfWork ,IUserContext userContext ) : IRequestHandler<CreateCategoryRequest, Result<CreateCategoryResponse>>
 {
     private readonly IUnitOfWork _unitOfWork = unitOfWork;
 
@@ -30,6 +31,8 @@ public class CreateCategoryHandler(IUnitOfWork unitOfWork) : IRequestHandler<Cre
 
             throw new BadRequestException("Name null ola bilmez");
         }
+
+        category
 
         await _unitOfWork.CategoryRepository.AddAsync(category);
 
